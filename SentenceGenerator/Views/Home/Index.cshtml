@@ -1,0 +1,83 @@
+﻿
+
+
+
+<div class="container">
+    
+    <div class="m-5">
+        <div class="row m-3 ">
+            <div class="row col-12">
+                <h1 class="display-4 text-center">Embrace the absurdity!</h1>
+            </div>
+            <div class="images col-2 d-flex align-items-end">
+                <div>
+                    <a href="https://tildesites.bowdoin.edu/~allen/nlp/nlp1.html"><img class="img-thumbnail img-rounded float-left" id="cfg-1" src="~/Images/cfg1.png" style="min-width:120%;"/></a>
+                    <a href="https://tildesites.bowdoin.edu/~allen/nlp/nlp1.html"><img class="img-thumbnail img-rounded float-left" id="cfg-2" src="~/Images/cfg2.png"  style="min-width:120%;"/></a>
+                    <a href="https://tildesites.bowdoin.edu/~allen/nlp/nlp1.html"><img class="img-thumbnail img-rounded float-left" id="cfg-3" src="~/Images/cfg3.png" style="min-width:120%;" /></a>
+                        
+                        
+                        
+                    
+                    
+                </div>
+            </div>
+            <div class="col-8">
+                <div class="m-3 card p-3">
+                    <div class="text-center"> <p>In the textbox below, enter your sentence structure from the syntactic categories.</p></div>
+                    <div class="m-2">
+                        <strong>Syntactic Categories and Their Denotations</strong>
+                        <ul class="list-group">
+                            <li class="list-group-item">np - noun phrase</li>
+                            <li class="list-group-item">vp - verb phrase</li>
+                            <li class="list-group-item">s - sentence</li>
+                            <li class="list-group-item">det - determiner (article)</li>
+                            <li class="list-group-item">n - noun</li>
+                            <li class="list-group-item">v - verb</li>
+                            <li class="list-group-item">tv - transitive verb (takes an object)</li>
+                            <li class="list-group-item">iv - intransitive verb</li>
+                            <li class="list-group-item">prep - preposition</li>
+                            <li class="list-group-item">pp - prepositional phrase</li>
+                            <li class="list-group-item">adj - adjective</li>
+                        </ul>
+                    </div>
+                    <div class="m-2">
+                        <div> <p>Some Examples include:</p></div>
+                        <ul class="list-group text-center">
+                            <li class="list-group-item">det n tv det n - <i>"An iceberg helps the manga."</i></li>
+                            <li class="list-group-item">det n iv prep det n - <i>"A prorogation eats on the technology."</i></li>
+                            <li class="list-group-item">det n v adj - <i>"The criminality burns cowardly."</i></li>
+                        </ul>
+                    </div>
+
+                </div>
+               
+            </div>
+            <div class="row d-flex flex-column">
+                <div class="m-3 d-flex justify-content-center">
+                    <input id="structure" type="text" class="form-control w-25" />
+                </div>
+                <div class="m-3 d-flex justify-content-center"> <button class="btn btn-primary btn-lg" id="gen-sentence">Generate Sentence</button></div>
+
+                <div class="text-center"><div id="sentence"></div></div>
+            </div>
+        </div>
+        
+    </div>
+   
+</div>
+
+<script>
+    $(document).on('click', '#gen-sentence', function () {
+        var structure = $('#structure').val();
+        $.ajax({
+            url: "/Home/GetDefaultSentence",
+            data: { structureStr: structure},
+            method: "GET",
+            success: function (sentence) {
+                $('#sentence').html("<h2>" + sentence + "</h2>");
+            }
+        });
+    });
+
+
+</script>
